@@ -1,60 +1,71 @@
 /*
 My application global keyshortcuts
-
 ^ = ctrl
 ! = alt
 + = shift
 */
 
-^+!C:: ;Chrome
-Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe about:blank
+^+!I:: ;Chrome (I for Internet)
+  SetTitleMatchMode RegEx
+  id := WinExist("- Google Chrome$")
+  if id {
+    WinActivate, - Google Chrome$
+  }
+  else {
+    Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe chrome://newtab
+  }
+Return
+
+^+!T:: ;Chrome New Tab (T for Tab)
+  SetTitleMatchMode RegEx
+  id := WinExist("- Google Chrome$")
+  if id {
+    WinActivate, - Google Chrome$
+    Send ^t
+  }
+  else {
+    Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe chrome://newtab
+  }
+Return
+
+^+!C:: ;Google Calendar
+  Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://calendar.google.com
 Return
 
 ^+!G:: ;Gmail
-SetTitleMatchMode RegEx
-id := WinExist("- Gmail$")
-if id {
-  WinActivate, Gmail$
-}
-else {
-  Run "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"  --profile-directory=Default --app-id=kmhopmchchfpfdcdjodmpfaaphdclmlj
-}
+  SetTitleMatchMode RegEx
+  id := WinExist("- Gmail$")
+  if id {
+    WinActivate, Gmail$
+  }
+  else {
+    Run "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"  --profile-directory=Default --app-id=kmhopmchchfpfdcdjodmpfaaphdclmlj
+  }
 Return
 
 ^+!F:: ;Facebook
-Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://www.facebook.com/groups/237524160104801/
+  Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://www.facebook.com/groups/237524160104801/
+Return
+
+^+!Y:: ;Youtube
+  Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://www.youtube.com
 Return
 
 ^+!P:: ;Google Photos
-Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://photos.google.com
+  Run C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://photos.google.com
 Return
 
 ^+!N:: ;Notepad++
-Run C:\Program Files\Notepad++\notepad++.exe
+  Run C:\Program Files\Notepad++\notepad++.exe
 Return
 
 ^+!Q:: ;Squirrel SQL
-SetTitleMatchMode RegEx
-id := WinExist("^SQuirreL SQL Client")
-if id {
-  WinActivate, ^SQuirreL SQL Client
-}
-else {
-  Run C:\Users\LewisNakao\apps\squirrel-sql-snapshot-20180729_2224\squirrel-sql.bat
-}
+  SetTitleMatchMode RegEx
+  id := WinExist("^SQuirreL SQL Client")
+  if id {
+    WinActivate, ^SQuirreL SQL Client
+  }
+  else {
+    Run %USERPROFILE%\apps\squirrel-sql-snapshot-20180729_2224\squirrel-sql.bat
+  }
 Return
-
-/*
-  ^+!3:: ;Firefox
-  Run C:\Program Files (x86)\Mozilla Firefox\firefox.exe
-  Return
-  ^+!5:: ;Skype
-  Run C:\Program Files (x86)\Skype\Phone\Skype.exe
-  Return
-  ^+!Q:: ;Winamp
-  Run C:\Program Files (x86)\Winamp\winamp.exe
-  Return
-  ^+!W:: ;Word
-  Run C:\Program Files\Microsoft Office\Office16\WINWORD.EXE
-  Return
-*/
